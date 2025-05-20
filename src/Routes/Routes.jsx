@@ -6,39 +6,55 @@ import ShareTip from "../Pages/ShareTip";
 import SignUp from "../Pages/SignUp";
 import LogIn from "../Pages/LogIn"
 import ErrorPage from "../Pages/ErrorPage";
+import MainLayout from "../Layout/MainLayout";
+import BrowseTips from "../Pages/BrowseTips";
+import TipsDetail from "../Pages/TipsDetail";
 
 export const router = createBrowserRouter([
     {
-        path:'/',
-        Component:MathMLElement,
-        children:[
+        path: '/',
+        Component: MainLayout,
+        children: [
             {
-                path:'/',
-                Component:Home
+                path: '/',
+                loader: () => fetch('http://localhost:3000/tips'),
+                Component: Home
             },
             {
-                path:'/explore',
-                Component:ExploreGardeners
+                path: '/explore',
+                Component: ExploreGardeners
             },
             {
-                path:'/mytips',
-                Component:MyTips
+                path: '/mytips',
+                loader: () => fetch(`http://localhost:3000/tips`),
+                 Component: MyTips
             },
             {
-                path:'/sharetip',
-                Component:ShareTip
+                path: '/sharetip',
+                Component: ShareTip
             },
             {
-                path:'/login',
-                Component:LogIn
+                path: '/browse',
+                loader: () => fetch(`http://localhost:3000/tips`),
+                Component: BrowseTips,
             },
             {
-                path:'/signup',
-                Component:SignUp
+                path: '/detail/:id',
+                loader: ({ params }) => fetch(`http://localhost:3000/tips/${params.id}`),
+                Component: TipsDetail
+
+            },
+            {
+                path: '/login',
+                Component: LogIn
+            },
+            {
+                path: '/signup',
+                Component: SignUp
             },
             {
                 path: '/error',
-                Component:ErrorPage
+                Component: ErrorPage
             }
         ]
     }
