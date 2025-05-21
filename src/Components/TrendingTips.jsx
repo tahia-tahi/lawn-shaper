@@ -1,28 +1,39 @@
 import React from 'react';
 
 const TrendingTips = ({ tip }) => {
-    const { title, image,category } = tip;
+  const { title, image, category } = tip;
 
-    return (
-        <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 w-full h-[340px] flex flex-col">
-            <img
-                src={image}
-                alt={title}
-                className="w-full h-48 object-cover"
-            />
-            <div className="p-4 flex-grow flex flex-col justify-between">
-                <h2 className="text-[15px] font-semibold text-gray-800 mb-2 line-clamp-2">{title}</h2>
-                 <p className='text-[12px]'>{category}</p>
-                <a
-                    href="#"
-                    className="text-sm font-bold text-primary hover:text-secondary mt-auto"
-                >
-                    Read more →
-                </a>
-               
-            </div>
-        </div>
-    );
+  return (
+    <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 w-full max-w-sm flex flex-col">
+      {/* Image with rounded corners */}
+      <img
+        src={image}
+        alt={title}
+        className="w-full h-48 object-cover rounded-t-xl"
+      />
+
+      <div className="p-5 flex flex-col flex-grow">
+        {/* Category Badge */}
+        <span className="inline-block bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full mb-3 w-max">
+          {category}
+        </span>
+
+        {/* Title */}
+        <h2 className="text-lg font-semibold text-gray-900 mb-4 line-clamp-2">
+          {title}
+        </h2>
+
+        {/* Read More Button */}
+        <a
+          href="#"
+          className="mt-auto inline-block text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-200"
+          aria-label={`Read more about ${title}`}
+        >
+          Read more →
+        </a>
+      </div>
+    </div>
+  );
 };
 
 export default TrendingTips;

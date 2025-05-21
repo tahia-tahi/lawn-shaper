@@ -4,7 +4,8 @@ import { useLoaderData } from 'react-router';
 import TrendingTips from '../Components/TrendingTips';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
-
+import ActiveGardeners from "../Components/ActiveGardeners";
+import Counter from '../Components/Counter';
 const Home = () => {
 
     const tips = useLoaderData();
@@ -25,6 +26,8 @@ const Home = () => {
                 }
             </div>
             </div>
+            <ActiveGardeners></ActiveGardeners>
+            <Counter></Counter>
 
             <Footer></Footer>
         </div>

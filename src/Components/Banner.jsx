@@ -23,7 +23,7 @@ const Banner = () => {
 
     return (
         <div className=' w-full'>
-            <Zoom scale={1.4} indicators={true}>
+            <Zoom scale={1.4} indicators={true} arrows={false}>
                 {sliders.map((slider, index) => (
                     <div key={index} className="relative w-full h-[500px]">
                         <img
