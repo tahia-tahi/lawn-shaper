@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { use } from 'react';
+import { AuthContext } from '../Provider/AuthProvider';
+import GoogleSignIn from '../Provider/GoogleSignIn';
 
 const LogIn = () => {
+
+    const {signIn} = use(AuthContext)
+
+    const handleLogIn = (e) => {
+          e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value
+
+    signIn(email, password)
+    .then( (result) =>{
+        const user = result.user
+        console.log(user);
+    } )
+    .catvh((error)=>{
+        console.log(error);
+    })
+    }
+
+
     return (
         <div>
             <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
@@ -9,13 +32,11 @@ const LogIn = () => {
                     <fieldset className="fieldset">
 
                         <label className="label">Email</label>
-                        <input type="email" name='email' ref={emailRef} className="input" placeholder="Email" required />
+                        <input type="email" name='email' className="input" placeholder="Email" required />
 
                         <ShowHidePassword></ShowHidePassword>
 
-                        <div><a onClick={handleForgetPassword} className="link link-hover">Forgot password?</a></div>
 
-                        {error && <p className='text-red-600'>{error}</p>}
 
                         <button type='submit' className="btn btn-primary hover:btn-secondary mt-4">Login</button>
 

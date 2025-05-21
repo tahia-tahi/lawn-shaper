@@ -4,14 +4,21 @@ import logo from '../assets/logo-lawn.png';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { AuthContext } from '../Provider/AuthProvider';
 import userIcon from '../assets/user.png'
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
-    const {user} = use(AuthContext)
+    const {user, logOut} = use(AuthContext)
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleLogOut = () =>{
-    
+    logOut().then((
+        toast.warn('You logged out')
+    ))
+    .catch((error)=>{
+        console.log('logout', error);
+    })
+
   }
 
   return (

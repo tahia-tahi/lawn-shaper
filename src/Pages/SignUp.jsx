@@ -1,5 +1,7 @@
 import React, { use, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
+import GoogleSignIn from '../Provider/GoogleSignIn';
+import ShowHidePassword from '../Components/ShowHidePassword';
 
 const SignUp = () => {
 
@@ -17,9 +19,9 @@ const SignUp = () => {
 
 
         const form = e.target;
-        const name = form.name.value
+        // const name = form.name.value
         const email = form.email.value
-        const photo = form.photo.value
+        // const photo = form.photo.value
         const password = form.password.value
         createUser(email, password)
         .then(( result)=>{
@@ -51,7 +53,6 @@ const SignUp = () => {
                         <input type="text" name='name' className="input" placeholder="Name" required />
 
 
-                        {nameError && <p className='text-xs text-error'>{nameError}</p>}
 
                         <label className="label">Email</label>
                         <input type="email" name='email' className="input" placeholder="Email" required />
