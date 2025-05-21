@@ -9,6 +9,8 @@ import ErrorPage from "../Pages/ErrorPage";
 import MainLayout from "../Layout/MainLayout";
 import BrowseTips from "../Pages/BrowseTips";
 import TipsDetail from "../Pages/TipsDetail";
+import UpdateTips from "../Components/UpdateTips";
+import AuthLayout from "../Layout/AuthLayout";
 
 export const router = createBrowserRouter([
     {
@@ -27,7 +29,7 @@ export const router = createBrowserRouter([
             {
                 path: '/mytips',
                 loader: () => fetch(`http://localhost:3000/tips`),
-                 Component: MyTips
+                Component: MyTips
             },
             {
                 path: '/sharetip',
@@ -45,15 +47,30 @@ export const router = createBrowserRouter([
 
             },
             {
-                path: '/login',
-                Component: LogIn
+                path: '/update/:id',
+                loader: ({ params }) => fetch(`http://localhost:3000/tips/${params.id}`),
+                Component: UpdateTips
             },
             {
-                path: '/signup',
-                Component: SignUp
+                path: '/auth',
+                Component: <AuthLayout></AuthLayout>,
+                children: [
+
+                    {
+                        path: '/auth/login',
+                        Component: LogIn
+                    },
+                    {
+                        path: '/auth/signup',
+                        Component: SignUp
+                    },
+
+
+                ]
             },
+
             {
-                path: '/error',
+                path: '/*',
                 Component: ErrorPage
             }
         ]

@@ -2,6 +2,8 @@ import React from 'react';
 import Banner from '../Components/Banner';
 import { useLoaderData } from 'react-router';
 import TrendingTips from '../Components/TrendingTips';
+import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 
 const Home = () => {
 
@@ -12,6 +14,7 @@ const Home = () => {
 
     return (
         <div>
+            <Navbar></Navbar>
             <Banner></Banner>
 
             <div className="py-16 px-4 md:px-16 bg-gray-50"> 
@@ -23,7 +26,7 @@ const Home = () => {
             </div>
             </div>
 
-            
+            <Footer></Footer>
         </div>
     );
 };

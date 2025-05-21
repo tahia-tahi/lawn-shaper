@@ -1,9 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import { Link } from 'react-router';
+import Swal from 'sweetalert2';
 
 const MyTips = () => {
     const allTips = useLoaderData();
+        const [initialTips, setInitialTips] = useState(allTips)
+
+    const handleDelete = (_id) => {
+        console.log("Delete tip with ID:", _id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:3000/tips/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+
+                            const remainingTips = initialTips.filter(tips => tips._id !== _id);
+                            setInitialTips(remainingTips)
+                        }
+                    })
+
+            }
+        });
+
+    };
+
 
     return (
         <div className="px-4 md:px-24 py-10">
@@ -52,10 +90,5 @@ const MyTips = () => {
     );
 };
 
-// Placeholder delete handler
-const handleDelete = (id) => {
-    console.log("Delete tip with ID:", id);
-    // Implement actual delete logic here (confirmation, fetch call, state update)
-};
 
 export default MyTips;
