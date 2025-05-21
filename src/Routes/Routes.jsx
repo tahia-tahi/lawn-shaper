@@ -24,6 +24,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/explore',
+                loader: () => fetch('http://localhost:3000/gardeners'),
                 Component: ExploreGardeners
             },
             {
@@ -53,7 +54,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/auth',
-                Component: <AuthLayout></AuthLayout>,
+                Component: AuthLayout,
                 children: [
 
                     {

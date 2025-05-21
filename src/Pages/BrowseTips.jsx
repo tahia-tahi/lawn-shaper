@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router';
 import { IoIosEye } from "react-icons/io";
+import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 
 const BrowseTips = () => {
     const tips = useLoaderData();
@@ -9,6 +11,11 @@ const BrowseTips = () => {
     const publicTips = tips.filter(tip => tip.availability?.toLowerCase() === 'public');
 
     return (
+
+        <div>
+
+            <Navbar></Navbar>
+
         <div className="px-4 md:px-16 py-10">
             <h1 className="text-3xl font-bold mb-6 text-center">🌿 Browse All Gardening Tips</h1>
 
@@ -45,6 +52,10 @@ const BrowseTips = () => {
                 </table>
             </div>
         </div>
+
+        <Footer></Footer>
+        </div>
+
     );
 };
 

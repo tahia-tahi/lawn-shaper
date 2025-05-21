@@ -2,80 +2,108 @@ import React, { use, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import GoogleSignIn from '../Provider/GoogleSignIn';
 import ShowHidePassword from '../Components/ShowHidePassword';
+import { Link, useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+
 
 const SignUp = () => {
 
 
-    const {createUser,setUser} = use(AuthContext)
+    const { createUser, setUser, updateUser } = use(AuthContext)
+    const [nameError, setNameError] = useState("");
+
 
     const [passwordError, setPasswordError] = useState('')
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
 
 
+    const navigate = useNavigate()
 
     const handleSignUp = (e) => {
         e.preventDefault();
 
 
         const form = e.target;
-        // const name = form.name.value
+        const name = form.name.value
         const email = form.email.value
-        // const photo = form.photo.value
+        const photo = form.photo.value
         const password = form.password.value
         createUser(email, password)
-        .then(( result)=>{
-            const user = result.user
-             console.log(user);
-             setUser(user)
-        })
-        .catch((error)=> {
-            console.log(error);
-        })
+            .then(result => {
+                const user = result.user;
+                updateUser({ displayName: name, photoURL: photo }).then(() => {
+                    setUser({ ...user, displayName: name, photoURL: photo });
+                    toast.success('Register Successfull!!')
 
+                    navigate('/')
+                })
+                    .catch((error) => {
+                        console.log(error);
+                        setUser(user)
+                    })
+            })
+            .catch((error) => {
+                // const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
 
+                
+                if (name.length < 5) {
+                    setNameError('Name should more than 5 character')
+                    return
+                } else {
+                    setNameError('')
+                }
+                if (passwordRegex.test(password) === false) {
+                    setPasswordError('The password should be at least 8 characters and include 1 uppercase, 1 lowercase, and a special character.')
+                    return;
+                }
+            }
 
-        if (passwordRegex.test(password) === false) {
-            setPasswordError('The password should be at least 8 characters and include 1 uppercase, 1 lowercase, and a special character.')
-            return;
-        }
-    }
-
+            
 
     return (
-        <div>
-            <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
-                <form onSubmit={handleSignUp} className="card-body">
-                    <h1 className="text-3xl text-center text-accent font-bold">Register now!</h1>
-                    <fieldset className="fieldset">
-
-                        <label className="label">Name</label>
-                        <input type="text" name='name' className="input" placeholder="Name" required />
+            <div>
 
 
 
-                        <label className="label">Email</label>
-                        <input type="email" name='email' className="input" placeholder="Email" required />
+                <div className="card bg-white w-full mx-auto my-20 max-w-sm shrink-0 shadow-2xl">
+                    <form onSubmit={handleSignUp} className="card-body">
+                        <h1 className="text-3xl text-center text-accent font-bold">Register now!</h1>
+                        <fieldset className="fieldset">
 
-                        <label className="label">Photo</label>
-                        <input type="text" name='photo' className="input" placeholder="Photo URL" required />
+                            <label className="label">Name</label>
+                            <input type="text" name='name' className="input" placeholder="Name" required />
 
-                        <ShowHidePassword></ShowHidePassword>
+                            {nameError && <p className='text-xs text-error'>{nameError}</p>}
 
 
-                        <button type='submit' className="btn btn-primary hover:btn-secondary mt-4">Register</button>
-                        <p className='text-center font-bold my-2 text-primary'>OR</p>
+                            <label className="label">Email</label>
+                            <input type="email" name='email' className="input" placeholder="Email" required />
 
-                        <GoogleSignIn></GoogleSignIn>
+                            <label className="label">Photo</label>
+                            <input type="text" name='photo' className="input" placeholder="Photo URL" required />
 
-                        <p className='mt-3'>Already have an account? <Link className='text-primary font-semibold hover:text-secondary' to={'/auth/login'}>Log In</Link></p>
-                    </fieldset>
+                            <ShowHidePassword></ShowHidePassword>
 
-                    {passwordError && <p className='text-xs text-error'>{passwordError}</p>}
-                </form>
+
+                            <button type='submit' className="btn btn-primary hover:btn-secondary mt-4">Register</button>
+                            <p className='text-center font-bold my-2 text-primary'>OR</p>
+
+                            <GoogleSignIn></GoogleSignIn>
+
+                            <p className='mt-3'>Already have an account? <Link className='text-primary font-semibold hover:text-secondary' to={'/auth/login'}>Log In</Link></p>
+                        </fieldset>
+
+                        {passwordError && <p className='text-xs text-error'>{passwordError}</p>}
+                    </form>
+                </div>
+
+
             </div>
-        </div>
-    );
-};
+        );
+    };
 
-export default SignUp;
+    export default SignUp;
