@@ -5,7 +5,6 @@ const TrendingTips = ({ tip }) => {
 
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 w-full max-w-sm flex flex-col">
-      {/* Image with rounded corners */}
       <img
         src={image}
         alt={title}
@@ -13,17 +12,15 @@ const TrendingTips = ({ tip }) => {
       />
 
       <div className="p-5 flex flex-col flex-grow">
-        {/* Category Badge */}
         <span className="inline-block bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full mb-3 w-max">
           {category}
         </span>
 
-        {/* Title */}
+ 
         <h2 className="text-lg font-semibold text-gray-900 mb-4 line-clamp-2">
           {title}
         </h2>
 
-        {/* Read More Button */}
         <a
           href="#"
           className="mt-auto inline-block text-indigo-600 font-semibold hover:text-indigo-800 transition-colors duration-200"

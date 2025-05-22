@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/mytips',
-                loader: () => fetch(`http://localhost:3000/tips`),
+                loader: () => fetch(`http://localhost:3000/tips/my/all`),
                 element: <PrivateRoute>
                     <MyTips></MyTips>
                 </PrivateRoute>,
