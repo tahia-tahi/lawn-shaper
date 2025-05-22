@@ -90,7 +90,6 @@ const Navbar = () => {
 
         </div>
 
-        {/* Mobile Menu Button */}
         <div className="md:hidden text-3xl text-primary">
           <button onClick={toggleMenu}>
             {isOpen ? <HiX /> : <HiMenu />}
@@ -98,7 +97,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden flex flex-col items-center gap-4 mt-4 p-4 bg-base-100 rounded-lg shadow-inner font-medium text-secondary">
           <Link to="/" onClick={toggleMenu} className="hover:text-primary">Home</Link>

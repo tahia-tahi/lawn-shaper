@@ -14,7 +14,6 @@ const GardenerCard = ({ gardener }) => {
 
   return (
     <div className="flex items-center gap-6 border border-gray-300 rounded-xl p-5 shadow-md hover:shadow-lg transition duration-300 bg-white max-w-3xl mx-auto my-4">
-      {/* Profile Image */}
       <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-green-400 flex-shrink-0">
         <img
           src={profile_image}
@@ -23,12 +22,10 @@ const GardenerCard = ({ gardener }) => {
         />
       </div>
 
-      {/* Info Section */}
       <div className="flex-grow flex flex-col justify-center space-y-2">
         <h2 className="text-2xl font-semibold text-gray-900">{name}</h2>
         <p className="text-gray-600">{location}</p>
 
-        {/* Status & Specialty Badges */}
         <div className="flex gap-3 mt-1">
           <span
             className={`px-3 py-1 text-sm rounded-full font-medium ${
@@ -44,7 +41,6 @@ const GardenerCard = ({ gardener }) => {
           </span>
         </div>
 
-        {/* Additional Details in a neat row */}
         <div className="flex gap-10 mt-3 text-gray-700 text-sm">
           <div>
             <p className="font-semibold">Age</p>

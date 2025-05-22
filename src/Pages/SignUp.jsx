@@ -36,8 +36,7 @@ const SignUp = () => {
          const userProfile = {
             email,
             ...restFormData,
-            // creationTime : result.user?.metadata?.creationTime,
-            // lastSignInTime: result.user?.metadata?.lastSignInTime,
+           
         }
         
         
@@ -74,7 +73,6 @@ const SignUp = () => {
                     })
             })
             .catch((error) => {
-                // const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorMessage);
             });

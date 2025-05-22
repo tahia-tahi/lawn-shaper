@@ -70,21 +70,21 @@ const MyTips = () => {
                                     </td>
                                     <td className="py-4 px-6 text-center space-x-3">
                                         <div className="flex justify-center items-center space-x-4">
-        <Link
-            to={`/update/${tip._id}`}
-            className="p-2 bg-yellow-100 text-yellow-700 rounded-full hover:bg-yellow-200"
-            title="Update"
-        >
-            <MdEdit size={20} />
-        </Link>
-        <button
-            onClick={() => handleDelete(tip._id)}
-            className="p-2 bg-red-100 text-red-700 rounded-full hover:bg-red-200"
-            title="Delete"
-        >
-            <MdDelete size={20} />
-        </button>
-    </div>
+                                            <Link
+                                                to={`/update/${tip._id}`}
+                                                className="p-2 bg-yellow-100 text-yellow-700 rounded-full hover:bg-yellow-200"
+                                                title="Update"
+                                            >
+                                                <MdEdit size={20} />
+                                            </Link>
+                                            <button
+                                                onClick={() => handleDelete(tip._id)}
+                                                className="p-2 bg-red-100 text-red-700 rounded-full hover:bg-red-200"
+                                                title="Delete"
+                                            >
+                                                <MdDelete size={20} />
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}

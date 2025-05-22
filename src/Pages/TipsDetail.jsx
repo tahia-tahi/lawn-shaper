@@ -7,10 +7,10 @@ import Footer from '../Components/Footer';
 const TipsDetail = () => {
   const detail = useLoaderData();
   const [likes, setLikes] = useState(detail.totalLiked || 0);
-  const [liked, setLiked] = useState(false); // prevent multiple likes in one session
+  const [liked, setLiked] = useState(false); 
 
   const handleLike = () => {
-    if (liked) return; // prevent multiple likes without reload
+    if (liked) return; 
 
     fetch(`https://localhost/tips/${detail._id}/like`, {
       method: 'PUT',
