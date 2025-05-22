@@ -8,6 +8,8 @@ const BrowseTips = () => {
     const tips = useLoaderData();
     console.log(tips);
 
+  
+
     const publicTips = tips.filter(tip => tip.availability?.toLowerCase() === 'public');
 
     return (
@@ -43,7 +45,7 @@ const BrowseTips = () => {
                                 <td className="py-3 px-4 text-gray-600">{tip.category}</td>
                                 <td className="py-3 px-4 text-center">
                                     <Link to={`/detail/${tip._id}`} className="text-green-600 hover:text-green-800 transition">
-                                        <IoIosEye size={20} />
+                                        <IoIosEye  size={20} />
                                     </Link>
                                 </td>
                             </tr>

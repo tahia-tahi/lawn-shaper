@@ -1,6 +1,8 @@
 import { useLoaderData } from 'react-router';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from './Navbar';
+import Footer from './Footer'
 
 const UpdateTips = () => {
 
@@ -34,9 +36,13 @@ const UpdateTips = () => {
 
 
     return (
-        <div className="p-24">
+
+        <div>
+
+            <Navbar></Navbar>
+                    <div className="p-24">
             <div className="p-12 text-center space-y-4">
-                <h1 className="text-6xl">Share Gardening Tip</h1>
+                <h1 className="text-6xl">Update Gardening Tip</h1>
                 <p>Share your best gardening advice with fellow enthusiasts! Your tips can help others grow greener and better. 🌱</p>
             </div>
 
@@ -144,6 +150,11 @@ const UpdateTips = () => {
                 />
             </form>
         </div>
+
+        <Footer></Footer>
+        </div>
+
+
     );
 };
 

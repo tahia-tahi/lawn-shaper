@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 
+
 const ShareTip = () => {
     const handleSubmitTip = (e) => {
         e.preventDefault();
@@ -33,8 +34,7 @@ const ShareTip = () => {
     return (
 
         <div>
-
-            <Navbar></Navbar>
+<Navbar></Navbar>
 
             <div className="p-24">
                 <div className="p-12 text-center space-y-4">
@@ -143,7 +143,7 @@ const ShareTip = () => {
                 </form>
             </div>
 
-            <Footer></Footer>
+      <Footer></Footer>
         </div>
 
 

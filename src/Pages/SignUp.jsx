@@ -25,22 +25,52 @@ const SignUp = () => {
 
 
         const form = e.target;
-        const name = form.name.value
-        const email = form.email.value
-        const photo = form.photo.value
-        const password = form.password.value
+        const formData = new FormData(form)
+
+        const name = formData.get('name')
+        const photo = formData.get('photo')
+
+        const { email, password, ...restFormData } = Object.fromEntries(formData.entries())
+        
+       
+         const userProfile = {
+            email,
+            ...restFormData,
+            // creationTime : result.user?.metadata?.creationTime,
+            // lastSignInTime: result.user?.metadata?.lastSignInTime,
+        }
+        
+        
+        console.log(email, password, userProfile);
+
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                updateUser({ displayName: name, photoURL: photo }).then(() => {
-                    setUser({ ...user, displayName: name, photoURL: photo });
-                    toast.success('Register Successfull!!')
-
-                    navigate('/')
-                })
+                updateUser({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        setUser({ ...user, displayName: name, photoURL: photo });
+                        toast.success('Account Created Successfully!!')
+                        navigate('/')
+                    })
                     .catch((error) => {
                         console.log(error);
                         setUser(user)
+                    })
+
+                fetch('http://localhost:3000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userProfile)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+
+                        console.log(data.insertedID)
+                        
+
+
                     })
             })
             .catch((error) => {
@@ -49,61 +79,61 @@ const SignUp = () => {
                 console.log(errorMessage);
             });
 
-                
-                if (name.length < 5) {
-                    setNameError('Name should more than 5 character')
-                    return
-                } else {
-                    setNameError('')
-                }
-                if (passwordRegex.test(password) === false) {
-                    setPasswordError('The password should be at least 8 characters and include 1 uppercase, 1 lowercase, and a special character.')
-                    return;
-                }
-            }
 
-            
+        if (name.length < 5) {
+            setNameError('Name should more than 5 character')
+            return
+        } else {
+            setNameError('')
+        }
+        if (passwordRegex.test(password) === false) {
+            setPasswordError('The password should be at least 8 characters and include 1 uppercase, 1 lowercase, and a special character.')
+            return;
+        }
+    }
+
+
 
     return (
-            <div>
+        <div>
 
 
 
-                <div className="card bg-white w-full mx-auto my-20 max-w-sm shrink-0 shadow-2xl">
-                    <form onSubmit={handleSignUp} className="card-body">
-                        <h1 className="text-3xl text-center text-accent font-bold">Register now!</h1>
-                        <fieldset className="fieldset">
+            <div className="card bg-white w-full mx-auto my-20 max-w-sm shrink-0 shadow-2xl">
+                <form onSubmit={handleSignUp} className="card-body">
+                    <h1 className="text-3xl text-center text-accent font-bold">Register now!</h1>
+                    <fieldset className="fieldset">
 
-                            <label className="label">Name</label>
-                            <input type="text" name='name' className="input" placeholder="Name" required />
+                        <label className="label">Name</label>
+                        <input type="text" name='name' className="input" placeholder="Name" required />
 
-                            {nameError && <p className='text-xs text-error'>{nameError}</p>}
-
-
-                            <label className="label">Email</label>
-                            <input type="email" name='email' className="input" placeholder="Email" required />
-
-                            <label className="label">Photo</label>
-                            <input type="text" name='photo' className="input" placeholder="Photo URL" required />
-
-                            <ShowHidePassword></ShowHidePassword>
+                        {nameError && <p className='text-xs text-error'>{nameError}</p>}
 
 
-                            <button type='submit' className="btn btn-primary hover:btn-secondary mt-4">Register</button>
-                            <p className='text-center font-bold my-2 text-primary'>OR</p>
+                        <label className="label">Email</label>
+                        <input type="email" name='email' className="input" placeholder="Email" required />
 
-                            <GoogleSignIn></GoogleSignIn>
+                        <label className="label">Photo</label>
+                        <input type="text" name='photo' className="input" placeholder="Photo URL" required />
 
-                            <p className='mt-3'>Already have an account? <Link className='text-primary font-semibold hover:text-secondary' to={'/auth/login'}>Log In</Link></p>
-                        </fieldset>
-
-                        {passwordError && <p className='text-xs text-error'>{passwordError}</p>}
-                    </form>
-                </div>
+                        <ShowHidePassword></ShowHidePassword>
 
 
+                        <button type='submit' className="btn btn-primary hover:btn-secondary mt-4">Register</button>
+                        <p className='text-center font-bold my-2 text-primary'>OR</p>
+
+                        <GoogleSignIn></GoogleSignIn>
+
+                        <p className='mt-3'>Already have an account? <Link className='text-primary font-semibold hover:text-secondary' to={'/auth/login'}>Log In</Link></p>
+                    </fieldset>
+
+                    {passwordError && <p className='text-xs text-error'>{passwordError}</p>}
+                </form>
             </div>
-        );
-    };
 
-    export default SignUp;
+
+        </div>
+    );
+};
+
+export default SignUp;

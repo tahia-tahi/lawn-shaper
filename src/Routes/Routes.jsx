@@ -11,6 +11,8 @@ import BrowseTips from "../Pages/BrowseTips";
 import TipsDetail from "../Pages/TipsDetail";
 import UpdateTips from "../Components/UpdateTips";
 import AuthLayout from "../Layout/AuthLayout";
+import PrivateRoute from "../Provider/PrivateRoute";
+import Loading from "../Components/Loading";
 
 export const router = createBrowserRouter([
     {
@@ -25,32 +27,46 @@ export const router = createBrowserRouter([
             {
                 path: '/explore',
                 loader: () => fetch('http://localhost:3000/gardeners'),
-                Component: ExploreGardeners
+                Component: ExploreGardeners,
+                hydrateFallbackElement: <Loading></Loading>
+
             },
             {
                 path: '/mytips',
                 loader: () => fetch(`http://localhost:3000/tips`),
-                Component: MyTips
+                element: <PrivateRoute>
+                    <MyTips></MyTips>
+                </PrivateRoute>,
+                hydrateFallbackElement: <Loading></Loading>
+
             },
             {
                 path: '/sharetip',
-                Component: ShareTip
+                element: <PrivateRoute>
+                    <ShareTip></ShareTip>
+                </PrivateRoute>
             },
             {
                 path: '/browse',
                 loader: () => fetch(`http://localhost:3000/tips`),
                 Component: BrowseTips,
+                hydrateFallbackElement: <Loading></Loading>
+
             },
             {
                 path: '/detail/:id',
                 loader: ({ params }) => fetch(`http://localhost:3000/tips/${params.id}`),
-                Component: TipsDetail
+                Component: TipsDetail,
+                hydrateFallbackElement: <Loading></Loading>
+
 
             },
             {
                 path: '/update/:id',
                 loader: ({ params }) => fetch(`http://localhost:3000/tips/${params.id}`),
-                Component: UpdateTips
+                Component: UpdateTips,
+                hydrateFallbackElement: <Loading></Loading>
+
             },
             {
                 path: '/auth',

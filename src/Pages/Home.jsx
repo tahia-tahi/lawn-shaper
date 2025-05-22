@@ -2,10 +2,11 @@ import React from 'react';
 import Banner from '../Components/Banner';
 import { useLoaderData } from 'react-router';
 import TrendingTips from '../Components/TrendingTips';
-import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import ActiveGardeners from "../Components/ActiveGardeners";
 import Counter from '../Components/Counter';
+import Navbar from '../Components/Navbar';
+import Subscribe from '../Components/Subscribe';
 const Home = () => {
 
     const tips = useLoaderData();
@@ -28,8 +29,9 @@ const Home = () => {
             </div>
             <ActiveGardeners></ActiveGardeners>
             <Counter></Counter>
-
+            <Subscribe></Subscribe>
             <Footer></Footer>
+
         </div>
     );
 };
