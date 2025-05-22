@@ -1,4 +1,15 @@
 # React + Vite
+Project Name: LAWN SHAPER
+
+🌿 Key Features:
+👩‍🌾 Gardener Profiles: View detailed profiles of gardeners, including their specialties, experience, and location.
+📸 Tip Sharing Platform: Gardeners can share plant care tips with images and detailed descriptions.
+🧾 Topic-Based Browsing: Tips are categorized by topics and difficulty levels for easy exploration.
+📂 My Tips Dashboard: Logged-in users can manage and track the tips they’ve shared.
+🧑‍💼 User Authentication: Secure login and signup system to personalize the experience for each user.
+
+📘 Project Description:
+Lawn Shaper is a web-based application built for gardening lovers who want to learn, share, and connect through real-life lawn care experiences. It features an organized system for browsing plant care tips, exploring verified gardener profiles, and contributing personal gardening insights. Whether you're a beginner or an expert, Lawn Shaper provides a collaborative space to help you grow and thrive in your gardening journey.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
