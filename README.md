@@ -1,6 +1,6 @@
 # React + Vite
 Project Name: LAWN SHAPER
-
+Live url: https://lawn-shaper.web.app/
 🌿 Key Features:
 👩‍🌾 Gardener Profiles: View detailed profiles of gardeners, including their specialties, experience, and location.
 📸 Tip Sharing Platform: Gardeners can share plant care tips with images and detailed descriptions.
