@@ -1,5 +1,8 @@
 # 🌿 Lawn Shaper – Gardening Made Smart
 
+
+**Lawn Shaper** is a web-based platform built for gardening enthusiasts. It allows users to explore helpful plant care tips, view expert gardener profiles, and contribute their own knowledge. With features like tip sharing, category-based browsing, and interactive UI — Lawn Shaper aims to create a collaborative learning space for garden lovers of all levels.
+
 **Live URL:** [https://lawn-shaper.web.app/](https://lawn-shaper.web.app/)
 
 
