@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
-import Navbar from '../Components/Navbar';
-import Footer from '../Components/Footer';
+
 import { MdEdit, MdDelete } from "react-icons/md";
 
 const MyTips = () => {
@@ -43,7 +42,6 @@ const MyTips = () => {
 
     return (
         <div>
-            <Navbar />
 
             <div className="px-4 md:px-24 py-10">
                 <h1 className="text-3xl font-bold text-green-700 mb-6 text-center">🌿 My Submitted Tips</h1>
@@ -93,7 +91,6 @@ const MyTips = () => {
                 </div>
             </div>
 
-            <Footer />
         </div>
     );
 };

@@ -1,7 +1,6 @@
-import React from 'react';
+
 import { toast } from 'react-toastify';
-import Navbar from '../Components/Navbar';
-import Footer from '../Components/Footer';
+
 
 
 const ShareTip = () => {
@@ -34,8 +33,6 @@ const ShareTip = () => {
     return (
 
         <div>
-<Navbar></Navbar>
-
             <div className="p-24">
                 <div className="p-12 text-center space-y-4">
                     <h1 className="text-6xl">Share Gardening Tip</h1>
@@ -143,7 +140,6 @@ const ShareTip = () => {
                 </form>
             </div>
 
-      <Footer></Footer>
         </div>
 
 

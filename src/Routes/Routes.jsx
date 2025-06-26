@@ -14,7 +14,6 @@ import AuthLayout from "../Layout/AuthLayout";
 import PrivateRoute from "../Provider/PrivateRoute";
 import Loading from "../Components/Loading";
 import Dashboard from "../Components/Dashboard";
-import DashboardLayout from "../Layout/DashboardLayout";
 
 export const router = createBrowserRouter([
     {

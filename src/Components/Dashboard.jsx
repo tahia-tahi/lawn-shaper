@@ -16,7 +16,7 @@ const Dashboard = () => {
     <div className="min-h-screen flex bg-gray-50">
 
       {/* Left Sidebar */}
-      <aside className="w-64 bg-accent shadow-lg p-4">
+      <aside className="w-64 bg-primary shadow-lg p-4">
         <div className="flex items-center gap-3 mb-6">
           {user?.photoURL && (
             <img

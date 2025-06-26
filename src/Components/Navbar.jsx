@@ -4,9 +4,8 @@ import logo from '../assets/logo-lawn.png';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'react-toastify';
-import { FaSun } from 'react-icons/fa';
-import { FaMoon } from 'react-icons/fa6';
-import Dashboard from './Dashboard';
+import { FaSun, FaMoon } from 'react-icons/fa';
+
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
