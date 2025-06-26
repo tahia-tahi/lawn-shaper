@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import logo from '../assets/logo-lawn.png';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { FaSun } from 'react-icons/fa';
 import { FaMoon } from 'react-icons/fa6';
+import Dashboard from './Dashboard';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -50,12 +51,16 @@ const Navbar = () => {
           <Link to="/" className="hover:text-primary">Home</Link>
           <Link to="/explore" className="hover:text-primary">Explore Gardeners</Link>
           <Link to="/browse" className="hover:text-primary">Browse Tips</Link>
-          <Link to="/sharetip" className="hover:text-primary">Share Tip</Link>
-          <Link to="/mytips" className="hover:text-primary">My Tips</Link>
+
 
           {user && (
             <>
-              <div className="flex flex-col items-center gap-1">
+              <NavLink to={'/dashboard'}>
+                Dashboard
+              </NavLink>
+
+
+              {/* <div className="flex flex-col items-center gap-1">
                 {user.photoURL && (
                   <img
                     src={user.photoURL}
@@ -63,9 +68,13 @@ const Navbar = () => {
                     className="w-8 h-8 rounded-full"
                     title={user.displayName}
                   />
+
                 )}
+
+
+
                 <span className="text-sm text-primary">{user.displayName || user.email}</span>
-              </div>
+              </div> */}
               <button onClick={handleLogOut} className="btn btn-sm bg-primary text-white hover:bg-secondary">
                 Log Out
               </button>
@@ -131,7 +140,7 @@ const Navbar = () => {
               </Link>
             </>
           )}
-          
+
         </div>
       )}
 

@@ -13,6 +13,8 @@ import UpdateTips from "../Components/UpdateTips";
 import AuthLayout from "../Layout/AuthLayout";
 import PrivateRoute from "../Provider/PrivateRoute";
 import Loading from "../Components/Loading";
+import Dashboard from "../Components/Dashboard";
+import DashboardLayout from "../Layout/DashboardLayout";
 
 export const router = createBrowserRouter([
     {
@@ -21,49 +23,57 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                loader: () => fetch('http://localhost:3000/tips'),
+                loader: () => fetch('https://lawn-shaper-server.vercel.app/tips'),
                 Component: Home
             },
             {
                 path: '/explore',
-                loader: () => fetch('http://localhost:3000/gardeners'),
+                loader: () => fetch('https://lawn-shaper-server.vercel.app/gardeners'),
                 Component: ExploreGardeners,
                 hydrateFallbackElement: <Loading></Loading>
 
             },
             {
-                path: '/mytips',
-                loader: () => fetch(`http://localhost:3000/tips/my/all`),
-                element: <PrivateRoute>
-                    <MyTips></MyTips>
-                </PrivateRoute>,
-                hydrateFallbackElement: <Loading></Loading>
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>,
+                children: [
+                    {
+                        path: '/dashboard/mytips',
+                        loader: () => fetch(`https://lawn-shaper-server.vercel.app/tips/my/all`),
+                        element: <PrivateRoute>
+                            <MyTips></MyTips>
+                        </PrivateRoute>,
+                        hydrateFallbackElement: <Loading></Loading>
+                    },
+                    {
+                        path: '/dashboard/sharetip',
+                        element: <PrivateRoute>
+                            <ShareTip></ShareTip>
+                        </PrivateRoute>
+                    }
+                ]
 
             },
             {
-                path: '/sharetip',
-                element: <PrivateRoute>
-                    <ShareTip></ShareTip>
-                </PrivateRoute>
-            },
-            {
                 path: '/browse',
-                loader: () => fetch(`http://localhost:3000/tips`),
+                loader: () => fetch(`https://lawn-shaper-server.vercel.app/tips`),
                 Component: BrowseTips,
                 hydrateFallbackElement: <Loading></Loading>
 
             },
             {
                 path: '/detail/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/tips/${params.id}`),
-                Component: TipsDetail,
+                loader: ({ params }) => fetch(`https://lawn-shaper-server.vercel.app/tips/${params.id}`),
+                element: <PrivateRoute>
+                    <TipsDetail></TipsDetail>
+                </PrivateRoute>,
                 hydrateFallbackElement: <Loading></Loading>
 
 
             },
             {
                 path: '/update/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/tips/${params.id}`),
+                loader: ({ params }) => fetch(`https://lawn-shaper-server.vercel.app/tips/${params.id}`),
                 Component: UpdateTips,
                 hydrateFallbackElement: <Loading></Loading>
 
