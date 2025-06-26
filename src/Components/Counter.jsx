@@ -9,7 +9,7 @@ const Counter = () => {
   ];
 
   return (
-    <div className="w-11/12 mx-auto my-10">
+    <div className="px:4 md:px-16 mx-auto my-30">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 bg-gradient-to-r from-green-900 via-green-800 to-green-900 rounded-2xl p-10 shadow-xl">
         {countData.map((item, index) => (
           <div key={index} className="text-center text-white space-y-4 hover:scale-105 transition-transform duration-300">

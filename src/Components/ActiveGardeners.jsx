@@ -6,7 +6,7 @@ const ActiveGardeners = () => {
     const [gardeners, setGardeners] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/gardeners')
+        fetch('https://lawn-shaper-server.vercel.app/gardeners')
             .then(res => res.json())
             .then(data => {
                 const activeGardeners = data.filter(g => g.status === 'Active');
@@ -16,34 +16,36 @@ const ActiveGardeners = () => {
     }, []);
 
     return (
-        <div className="px-4 md:px-10 py-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
+        <div className="px-4 md:px-16 py-15 bg-primary mx-auto">
+            <div className=" mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-15">
 
+                {/* Text Column */}
                 <div className="text-center md:text-left">
-                    <Fade direction='down'>
-                        <h1 className="text-4xl font-bold text-green-700 mb-4">
-                            Meet Our Active Gardeners
+                    <Fade direction="down" triggerOnce>
+                        <h1 className="text-3xl md:text-4xl font-bold text-base-100 mb-4">
+                            Meet Our Gardeners
                         </h1>
                     </Fade>
 
-                    <Fade direction='up'>
-                        <p className="text-gray-600 text-lg">
-                            These expert gardeners are passionate about making your green dreams come true.
-                            Whether it’s hydroponics or balcony gardening—they’ve got you covered.
+                    <Fade direction="up" duration={600} triggerOnce>
+                        <p className="text-gray-800 text-lg leading-relaxed">
+                            These expert gardeners are passionate about making your green dreams come true. Whether it’s hydroponics, balcony gardening, or organic soil management — they’ve got you covered.
+
+                            From guiding first-time plant parents to supporting seasoned growers, they bring a wealth of knowledge, creativity, and love for all things green.
                         </p>
                     </Fade>
                 </div>
-                <Fade direction='right'>
 
-                    <div className="w-full">
-                        {gardeners.length > 0 ? (
-                            <GardenersSlide gardeners={gardeners} />
-                        ) : (
-                            <p className="text-center text-gray-500">Loading slideshow...</p>
-                        )}
-                    </div>
+                {/* Slide Column */}
+                <Fade direction="right" duration={600} triggerOnce>
+
+                    {gardeners.length > 0 ? (
+                        <GardenersSlide gardeners={gardeners} />
+                    ) : (
+                        <p className="text-center text-gray-400">Loading slideshow...</p>
+                    )}
+
                 </Fade>
-
 
             </div>
         </div>

@@ -13,17 +13,25 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
 
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+const [theme, setTheme] = useState('light'); // Default light
 
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+// Load saved theme from localStorage on first mount
+useEffect(() => {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  setTheme(savedTheme);
+}, []);
+
+// Apply theme to <html> tag and save to localStorage
+useEffect(() => {
+  const root = window.document.documentElement;
+  if (theme === 'dark') {
+    root.classList.add('dark');
+  } else {
+    root.classList.remove('dark');
+  }
+  localStorage.setItem('theme', theme);
+}, [theme]);
+
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
@@ -40,7 +48,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className="bg-white shadow-md px-4 md:px-8 py-3">
+    <nav className="bg-white shadow-md px-4 md:px-16 py-3 sticky top-0 z-50 mx-auto ">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
           <img src={logo} alt="LawnShaper" className="h-10 w-auto rounded-md" />
@@ -58,22 +66,6 @@ const Navbar = () => {
                 Dashboard
               </NavLink>
 
-
-              {/* <div className="flex flex-col items-center gap-1">
-                {user.photoURL && (
-                  <img
-                    src={user.photoURL}
-                    alt="User Icon"
-                    className="w-8 h-8 rounded-full"
-                    title={user.displayName}
-                  />
-
-                )}
-
-
-
-                <span className="text-sm text-primary">{user.displayName || user.email}</span>
-              </div> */}
               <button onClick={handleLogOut} className="btn btn-sm bg-primary text-white hover:bg-secondary">
                 Log Out
               </button>

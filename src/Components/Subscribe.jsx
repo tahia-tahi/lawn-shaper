@@ -14,7 +14,7 @@ const Subscribe = () => {
 
 
                 <div className="text-center md:text-left space-y-6">
-                        <h2 className="text-3xl md:text-4xl font-bold text-green-800">
+                        <h2 className="text-3xl md:text-4xl font-bold text-primary">
                             Subscribe To Know The Updates
                         </h2>
 
