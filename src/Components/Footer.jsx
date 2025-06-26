@@ -27,10 +27,10 @@ const Footer = () => {
                 {/* 3. Quick Links */}
                 <div className="flex flex-col gap-2">
                     <h3 className="font-semibold text-lg">Quick Links</h3>
-                    <Link to="/about" className="text-sm hover:underline hover:text-primary">About Us</Link>
+                    <Link to="/" className="text-sm hover:underline hover:text-primary">Home</Link>
+                    <Link to="/explore" className="text-sm hover:underline hover:text-primary">Explore Gardeners</Link>
+                    <Link to="/browse" className="text-sm hover:underline hover:text-primary">Tips</Link>
                     <Link to="/contact" className="text-sm hover:underline hover:text-primary">Contact</Link>
-                    <Link to="/privacy" className="text-sm hover:underline hover:text-primary">Privacy Policy</Link>
-                    <Link to="/terms" className="text-sm hover:underline hover:text-primary">Terms & Conditions</Link>
                 </div>
 
                 {/* 4. Social Media */}

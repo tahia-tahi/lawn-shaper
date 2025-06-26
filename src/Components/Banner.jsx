@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router';
 import { Zoom } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
@@ -22,26 +23,27 @@ const Banner = () => {
     ];
 
     return (
-     <div className="w-full h-[300px]">
-  <Zoom scale={1.4} indicators={true} arrows={false}>
-    {sliders.map((slider, index) => (
-      <div key={index} className="relative w-full h-[300px]">
-        <img
-          src={slider.image}
-          alt="Slide"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">{slider.title}</h2>
-          <p className="text-lg md:text-xl whitespace-pre-line mb-6">{slider.description}</p>
-          <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded">
-            Explore Tips
-          </button>
+        <div className="w-full h-[300px]">
+            <Zoom scale={1.4} indicators={true} arrows={false}>
+                {sliders.map((slider, index) => (
+                    <div key={index} className="relative w-full h-[300px]">
+                        <img
+                            src={slider.image}
+                            alt="Slide"
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4">
+                            <h2 className="text-3xl md:text-5xl font-bold mb-4">{slider.title}</h2>
+                            <p className="text-lg md:text-xl whitespace-pre-line mb-6">{slider.description}</p>
+                            <NavLink to={'/browse'}
+                                className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded">
+                                Explore Tips
+                                </NavLink>
+                        </div>
+                    </div>
+                ))}
+            </Zoom>
         </div>
-      </div>
-    ))}
-  </Zoom>
-</div>
 
     );
 };

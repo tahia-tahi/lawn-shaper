@@ -18,8 +18,8 @@ const BrowseTips = () => {
 
             <Navbar></Navbar>
 
-        <div className="px-4 md:px-16 py-10">
-            <h1 className="text-3xl font-bold mb-6 text-center">🌿 Browse All Gardening Tips</h1>
+        <div className="px-4 md:px-16 py-10 mt-20">
+            <h1 className="text-3xl font-bold mb-6 text-center text-primary">Browse All Gardening Tips</h1>
 
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white rounded-xl overflow-hidden shadow-md">
