@@ -1,42 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import logo from '../assets/logo-lawn.png';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'react-toastify';
-import { FaSun, FaMoon } from 'react-icons/fa';
-
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
-
-
-const [theme, setTheme] = useState('light'); // Default light
-
-// Load saved theme from localStorage on first mount
-useEffect(() => {
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  setTheme(savedTheme);
-}, []);
-
-// Apply theme to <html> tag and save to localStorage
-useEffect(() => {
-  const root = window.document.documentElement;
-  if (theme === 'dark') {
-    root.classList.add('dark');
-  } else {
-    root.classList.remove('dark');
-  }
-  localStorage.setItem('theme', theme);
-}, [theme]);
-
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
 
   const handleLogOut = () => {
     logOut()
@@ -44,11 +16,8 @@ useEffect(() => {
       .catch((error) => console.log('logout', error));
   };
 
-
-
-
   return (
-    <nav className="bg-white shadow-md px-4 md:px-16 py-3 sticky top-0 z-50 mx-auto ">
+    <nav className="bg-white shadow-md px-4 md:px-16 py-3 sticky top-0 z-50 mx-auto">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
           <img src={logo} alt="LawnShaper" className="h-10 w-auto rounded-md" />
@@ -59,13 +28,9 @@ useEffect(() => {
           <Link to="/explore" className="hover:text-primary">Explore Gardeners</Link>
           <Link to="/browse" className="hover:text-primary">Browse Tips</Link>
 
-
           {user && (
             <>
-              <NavLink to={'/dashboard'}>
-                Dashboard
-              </NavLink>
-
+              <NavLink to={'/dashboard'}>Dashboard</NavLink>
               <button onClick={handleLogOut} className="btn btn-sm bg-primary text-white hover:bg-secondary">
                 Log Out
               </button>
@@ -78,16 +43,6 @@ useEffect(() => {
               <Link to="/auth/signup" className="btn btn-sm border border-primary text-primary hover:bg-primary hover:text-white">Sign Up</Link>
             </>
           )}
-
-
-          <button
-            onClick={toggleTheme}
-            className="text-xl text-primary hover:text-secondary transition"
-            title="Toggle Theme"
-          >
-            {theme === 'light' ? <FaMoon /> : <FaSun />}
-          </button>
-
         </div>
 
         <div className="md:hidden text-3xl text-primary">
@@ -131,10 +86,8 @@ useEffect(() => {
               </Link>
             </>
           )}
-
         </div>
       )}
-
     </nav>
   );
 };

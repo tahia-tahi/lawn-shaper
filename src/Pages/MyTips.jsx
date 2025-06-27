@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
-
 import { MdEdit, MdDelete } from "react-icons/md";
 
 const MyTips = () => {
@@ -10,7 +9,6 @@ const MyTips = () => {
     const [initialTips, setInitialTips] = useState(allTips);
 
     const handleDelete = (_id) => {
-        console.log("Delete tip with ID:", _id);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -21,17 +19,13 @@ const MyTips = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/tips/${_id}`, {
+                fetch(`https://lawn-shaper-server.vercel.app/tips/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your tip has been deleted.",
-                                icon: "success"
-                            });
+                            Swal.fire("Deleted!", "Your tip has been deleted.", "success");
                             const remainingTips = initialTips.filter(tips => tips._id !== _id);
                             setInitialTips(remainingTips);
                         }
@@ -41,56 +35,64 @@ const MyTips = () => {
     };
 
     return (
-        <div>
+        <div className=" py-10">
+            <h1 className="text-3xl font-bold text-primary  pb-2 inline-block">
+                My Submitted Tips
+            </h1>
 
-            <div className="px-4 md:px-24 py-10">
-                <h1 className="text-3xl font-bold text-green-700 mb-6 text-center">🌿 My Submitted Tips</h1>
-
-                <div className="overflow-x-auto">
-                    <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden">
-                        <thead className="bg-green-100">
-                            <tr>
-                                <th className="text-left py-3 px-6 font-semibold text-green-700">Title</th>
-                                <th className="text-left py-3 px-6 font-semibold text-green-700">Image</th>
-                                <th className="text-center py-3 px-6 font-semibold text-green-700">Actions</th>
+            <div className="overflow-x-auto">
+                <table className="min-w-full text-sm bg-white rounded-xl shadow-md overflow-hidden">
+                    <thead className="bg-primary text-base-100 text-left">
+                        <tr>
+                            <th className="py-4 px-6 font-semibold">Title</th>
+                            <th className="py-4 px-6 font-semibold">Image</th>
+                            <th className="py-4 px-6 text-center font-semibold">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                        {initialTips.map((tip) => (
+                            <tr
+                                key={tip._id}
+                                className="hover:bg-green-50 transition-all duration-200"
+                            >
+                                <td className="py-4 px-6 font-medium text-gray-800">{tip.title}</td>
+                                <td className="py-4 px-6">
+                                    <img
+                                        src={tip.image}
+                                        alt={tip.title}
+                                        className="w-24 h-16 object-cover rounded-lg border border-gray-200"
+                                    />
+                                </td>
+                                <td className="py-4 px-6 text-center">
+                                    <div className="flex justify-center items-center gap-4">
+                                        <Link
+                                            to={`/update/${tip._id}`}
+                                            className="p-2 bg-yellow-100 text-yellow-700 rounded-full hover:bg-yellow-200 transition"
+                                            title="Update"
+                                        >
+                                            <MdEdit size={20} />
+                                        </Link>
+                                        <button
+                                            onClick={() => handleDelete(tip._id)}
+                                            className="p-2 bg-red-100 text-red-700 rounded-full hover:bg-red-200 transition"
+                                            title="Delete"
+                                        >
+                                            <MdDelete size={20} />
+                                        </button>
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {initialTips.map((tip) => (
-                                <tr key={tip._id} className="border-t">
-                                    <td className="py-4 px-6">{tip.title}</td>
-                                    <td className="py-4 px-6">
-                                        <img
-                                            src={tip.image}
-                                            alt={tip.title}
-                                            className="w-20 h-16 object-cover rounded"
-                                        />
-                                    </td>
-                                    <td className="py-4 px-6 text-center space-x-3">
-                                        <div className="flex justify-center items-center space-x-4">
-                                            <Link
-                                                to={`/update/${tip._id}`}
-                                                className="p-2 bg-yellow-100 text-yellow-700 rounded-full hover:bg-yellow-200"
-                                                title="Update"
-                                            >
-                                                <MdEdit size={20} />
-                                            </Link>
-                                            <button
-                                                onClick={() => handleDelete(tip._id)}
-                                                className="p-2 bg-red-100 text-red-700 rounded-full hover:bg-red-200"
-                                                title="Delete"
-                                            >
-                                                <MdDelete size={20} />
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                        ))}
+                        {initialTips.length === 0 && (
+                            <tr>
+                                <td colSpan="3" className="py-10 text-center text-gray-500">
+                                    No tips submitted yet.
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
             </div>
-
         </div>
     );
 };

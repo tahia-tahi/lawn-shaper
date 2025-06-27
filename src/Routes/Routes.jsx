@@ -14,6 +14,10 @@ import AuthLayout from "../Layout/AuthLayout";
 import PrivateRoute from "../Provider/PrivateRoute";
 import Loading from "../Components/Loading";
 import Dashboard from "../Components/Dashboard";
+import Overview from "../Pages/Overview";
+import TermsAndConditions from "../Pages/TermsAndConditions";
+import Contact from "../Pages/Contact";
+import React from "react";
 
 export const router = createBrowserRouter([
     {
@@ -49,6 +53,10 @@ export const router = createBrowserRouter([
                         element: <PrivateRoute>
                             <ShareTip></ShareTip>
                         </PrivateRoute>
+                    },
+                    {
+                        path: '/dashboard/overview',
+                        element: <Overview></Overview>
                     }
                 ]
 
@@ -98,6 +106,14 @@ export const router = createBrowserRouter([
             {
                 path: '/*',
                 Component: ErrorPage
+            },
+            {
+                path:'/terms',
+                element:<TermsAndConditions></TermsAndConditions>
+            },
+            {
+                path:'/contact',
+                Component:Contact
             }
         ]
     }

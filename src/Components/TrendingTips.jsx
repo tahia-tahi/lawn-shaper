@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const TrendingTips = ({ tip }) => {
   const { title, image, category } = tip;
@@ -16,18 +17,18 @@ const TrendingTips = ({ tip }) => {
           {category}
         </span>
 
- 
+
         <h2 className="text-[12px] font-semibold text-white mb-1 line-clamp-2">
           {title}
         </h2>
 
-        <a
-          href="#"
-          className="text-[12px] mt-auto inline-block text-base-100 font-semibold hover:text-green-950 transition-colors duration-200"
-          aria-label={`Read more about ${title}`}
+        <Link
+          to={`/detail/${tip._id}`}
+          className="  text-gray-200 hover:text-green-900 transition"
         >
-          Read more →
-        </a>
+         
+          Read More
+        </Link>
       </div>
     </div>
   );

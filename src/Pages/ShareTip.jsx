@@ -11,7 +11,7 @@ const ShareTip = () => {
         const tipsData = Object.fromEntries(formData.entries())
         console.log(tipsData);
 
-        fetch('http://localhost:3000/tips', {
+        fetch('https://lawn-shaper-server.vercel.app/tips', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -33,10 +33,10 @@ const ShareTip = () => {
     return (
 
         <div>
-            <div className="p-24">
-                <div className="p-12 text-center space-y-4">
-                    <h1 className="text-6xl">Share Gardening Tip</h1>
-                    <p>Share your best gardening advice with fellow enthusiasts! Your tips can help others grow greener and better. 🌱</p>
+            <div className="mt-10">
+                <div className="text-left space-y-4">
+                    <h1 className="text-3xl font-bold text-primary">Share Gardening Tip</h1>
+                    <p className='mb-3'>Share your best gardening advice with fellow enthusiasts! Your tips can help others grow greener and better. 🌱</p>
                 </div>
 
                 <form onSubmit={handleSubmitTip}>

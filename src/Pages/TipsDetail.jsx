@@ -12,7 +12,7 @@ const TipsDetail = () => {
   const handleLike = () => {
     if (liked) return; 
 
-    fetch(`https://localhost/tips/${detail._id}/like`, {
+    fetch(`https://lawn-shaper-server.vercel.app/tips/${detail._id}/like`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

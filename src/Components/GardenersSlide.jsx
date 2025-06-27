@@ -24,14 +24,14 @@ const GardenersSlide = ({ gardeners }) => {
                             <h2 className="text-xl font-semibold text-green-800 text-center">{g.name}</h2>
                             <p className="text-sm text-gray-600 text-center">{g.specialty}</p>
                             <p className="text-xs text-gray-500 text-center mb-4">{g.location}</p>
-                            <div className="flex justify-center gap-3">
+                            {/* <div className="flex justify-center gap-3">
                                 <button className="px-4 py-1 text-sm bg-green-600 text-white rounded-full hover:bg-green-700 transition">
                                     View Profile
                                 </button>
                                 <button className="px-4 py-1 text-sm bg-emerald-500 text-white rounded-full hover:bg-emerald-600 transition">
                                     Hire Now
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 ))}
