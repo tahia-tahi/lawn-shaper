@@ -1,3 +1,4 @@
+import React from "react";
 import { createBrowserRouter } from "react-router";
 import Home from "../Pages/Home";
 import ExploreGardeners from "../Pages/ExploreGardeners";
@@ -17,7 +18,7 @@ import Dashboard from "../Components/Dashboard";
 import Overview from "../Pages/Overview";
 import TermsAndConditions from "../Pages/TermsAndConditions";
 import Contact from "../Pages/Contact";
-import React from "react";
+
 
 export const router = createBrowserRouter([
     {
