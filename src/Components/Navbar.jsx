@@ -81,7 +81,7 @@ const Navbar = () => {
               <Link to="/auth/login" onClick={toggleMenu} className="btn btn-sm w-full bg-primary text-white hover:bg-secondary">
                 Log In
               </Link>
-              <Link to="/auth/signup" onClick={toggleMenu} className="btn btn-sm w-full border border-primary text-primary hover:bg-primary hover:text-white">
+              <Link to="/auth/signup" onClick={toggleMenu} className="btn btn-sm w-full border border-primary text-white hover:bg-primary ">
                 Sign Up
               </Link>
             </>
