@@ -40,7 +40,7 @@ const Navbar = () => {
           {!user && (
             <>
               <Link to="/auth/login" className="btn btn-sm bg-primary text-white hover:bg-secondary">Log In</Link>
-              <Link to="/auth/signup" className="btn btn-sm border border-primary text-primary hover:bg-primary hover:text-white">Sign Up</Link>
+              <Link to="/auth/signup" className="btn btn-sm border border-primary text-white hover:bg-primary ">Sign Up</Link>
             </>
           )}
         </div>
@@ -81,7 +81,7 @@ const Navbar = () => {
               <Link to="/auth/login" onClick={toggleMenu} className="btn btn-sm w-full bg-primary text-white hover:bg-secondary">
                 Log In
               </Link>
-              <Link to="/auth/signup" onClick={toggleMenu} className="btn btn-sm w-full border border-primary text-white hover:bg-primary ">
+              <Link to="/auth/signup" onClick={toggleMenu} className="btn btn-sm w-full border border-primary text-white hover:bg-primary">
                 Sign Up
               </Link>
             </>
